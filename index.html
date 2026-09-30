@@ -3,77 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rob | Portfolio</title>
+    <title>rob@dev:~# portfolio</title>
     <style>
         :root {
-            --bg: #000000;
-            --text-main: #ef4444; /* Rojo intenso elegante */
-            --text-muted: #888888;
-            --border-line: #1c1c1c;
-            --accent: #ef4444;
+            --bg: #0d1117;
+            --term-bg: #161b22;
+            --term-header: #21262d;
+            --text-main: #00ff66; /* Verde Terminal Clásico */
+            --text-accent: #ff79c6; /* Rosa / Neón */
+            --text-dim: #8b949e;
+            --text-white: #f0f6fc;
+            --border: #30363d;
+            --prompt-user: #50fa7b;
+            --prompt-path: #8be9fd;
+            --font-mono: "Fira Code", "JetBrains Mono", "Courier New", Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: var(--font-mono);
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
+            padding: 2rem 1rem;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Contenedor Principal estilo Ventana de Terminal */
+        .terminal-window {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--term-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        /* Barra superior de la Terminal */
+        .terminal-header {
+            background-color: var(--term-header);
+            padding: 0.6rem 1rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .btn-close { background-color: #ff5f56; }
+        .btn-minimize { background-color: #ffbd2e; }
+        .btn-maximize { background-color: #27c93f; }
+
+        .title {
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .terminal-body {
+            padding: 2rem;
+        }
+
+        /* Prompts y Comando */
+        .prompt-line {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            flex-wrap: wrap;
+        }
+
+        .user { color: var(--prompt-user); }
+        .path { color: var(--prompt-path); }
+        .command { color: var(--text-white); }
+
+        /* Cursor parpadeante */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: var(--text-main);
+            vertical-align: middle;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
         header {
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 6rem 1.5rem 3rem;
-            text-align: left;
+            margin-bottom: 2rem;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 1.5rem;
         }
 
-        header h1 { 
-            margin: 0; 
-            font-size: 2.2rem; 
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: #ffffff; /* Nombre grande en blanco puro */
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: var(--text-white);
+            letter-spacing: -1px;
         }
 
-        header p { 
-            margin: 0.4rem 0 0; 
-            color: var(--text-muted); 
-            font-size: 1.1rem; 
-            font-weight: 400;
-        }
-
-        .container {
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 0 1.5rem 6rem;
+        header p {
+            margin: 0.2rem 0 0;
+            color: var(--text-accent);
+            font-size: 1rem;
         }
 
         section {
-            border-top: 1px solid var(--border-line);
-            padding: 2.5rem 0;
+            margin-bottom: 2.5rem;
         }
 
         h2 {
-            color: var(--text-main);
-            font-size: 0.85rem;
+            color: var(--text-accent);
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             margin-top: 0;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::before {
+            content: ">";
+            color: var(--text-main);
         }
 
         p {
-            color: #b3b3b3; 
+            color: var(--text-dim);
             font-size: 0.95rem;
             margin: 0;
         }
 
         .job-item, .edu-item {
             margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1rem;
+            border-left: 2px solid var(--text-main);
         }
 
         .item-header {
@@ -81,20 +168,21 @@
             justify-content: space-between;
             align-items: baseline;
             margin-bottom: 0.4rem;
+            flex-wrap: wrap;
         }
 
         .item-title {
-            font-weight: 500;
-            color: #ffffff; 
-            font-size: 1rem;
+            font-weight: bold;
+            color: var(--text-white);
+            font-size: 0.95rem;
         }
 
         .date {
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            color: var(--text-accent);
+            font-size: 0.8rem;
         }
 
-        /* 🖼️ ESTILOS DE LA GALERÍA DE IMÁGENES */
+        /* Grid de Proyectos */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -103,51 +191,78 @@
         }
 
         .project-card {
-            background-color: #0a0a0a;
-            border: 1px solid var(--border-line);
-            border-radius: 8px;
+            background-color: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 4px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: border-color 0.2s ease;
         }
 
-        /* Contenedor de la imagen que oculta el desborde al agrandarse */
+        .project-card:hover {
+            border-color: var(--text-main);
+        }
+
+        /* Estilo Hacker / Matrix / CRT para las imágenes */
         .project-image-wrapper {
             width: 100%;
-            height: 200px;
+            height: 180px;
             overflow: hidden;
             position: relative;
+            background-color: #000;
         }
 
-        /* Propiedades de la imagen con la transición de agrandamiento suave */
         .project-image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            filter: grayscale(100%) contrast(120%) brightness(90%);
+            mix-blend-mode: luminosity;
+            transition: all 0.3s ease;
         }
 
-        /* 🚀 EFECTO HOVER: Agranda la imagen un 8% cuando el cursor pasa por encima de la tarjeta */
+        /* Overlay tipo pantalla CRT/Scanlines sobre la imagen */
+        .project-image-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.06),
+                rgba(0, 255, 0, 0.02),
+                rgba(0, 0, 255, 0.06)
+            );
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Al pasar el cursor, la imagen cobra color y se escala ligeramente */
         .project-card:hover .project-image-wrapper img {
-            transform: scale(1.08);
+            filter: grayscale(0%) contrast(100%) brightness(100%);
+            transform: scale(1.05);
         }
 
         .project-info {
-            padding: 1.2rem;
+            padding: 1rem;
         }
 
         .project-info h3 {
             margin: 0 0 0.5rem;
-            font-size: 1.1rem;
-            color: #ffffff;
-            font-weight: 600;
+            font-size: 1rem;
+            color: var(--text-white);
+            font-weight: bold;
         }
 
         .project-info p {
             font-size: 0.85rem;
-            color: var(--text-muted);
+            color: var(--text-dim);
         }
 
+        /* Tags de habilidades como flags de comando Linux */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -155,129 +270,178 @@
         }
 
         .skill-tag {
-            background-color: transparent;
-            color: #dddddd;
-            border: 1px solid var(--border-line);
-            padding: 0.35rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
+            background-color: #21262d;
+            color: var(--prompt-path);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .skill-tag::before {
+            content: "--";
+            color: var(--text-accent);
         }
 
         .skill-tag:hover {
             border-color: var(--text-main);
-            color: #ffffff;
+            color: var(--text-main);
         }
 
+        /* Enlaces de contacto estilo Shell */
         .contact-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.2rem;
             flex-wrap: wrap;
         }
 
         .contact-links a {
-            color: var(--text-muted);
+            color: var(--text-white);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             transition: color 0.2s;
             display: inline-flex;
             align-items: center;
         }
 
-        .contact-links a:hover { 
+        .contact-links a:hover {
             color: var(--text-main);
             text-decoration: underline;
-            text-underline-offset: 4px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Rob</h1>
-        <p>3D modeler / junior programmer</p>
-    </header>
+    <div class="terminal-window">
+        <!-- Barra superior de la ventana -->
+        <div class="terminal-header">
+            <div class="buttons">
+                <span class="btn btn-close"></span>
+                <span class="btn btn-minimize"></span>
+                <span class="btn btn-maximize"></span>
+            </div>
+            <div class="title">bash - rob@developer-machine:~</div>
+        </div>
 
-    <div class="container">
-        
-        <section id="sobre-mi">
-            <h2>About Me</h2>
-            <p>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
-        </section>
+        <div class="terminal-body">
+            
+            <header>
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">whoami</span>
+                </div>
+                <h1>Rob</h1>
+                <p>> 3D modeler / junior programmer</p>
+            </header>
 
-        <!-- 🖼️ SECCIÓN DE PROYECTOS VISUALES OPTIMIZADA -->
-        <section id="proyectos">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
+            <!-- SOBRE MÍ -->
+            <section id="sobre-mi">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">cat about_me.txt</span>
+                </div>
+                <h2>About Me</h2>
+                <p>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
+            </section>
+
+            <!-- PROYECTOS -->
+            <section id="proyectos">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">ls -la ./featured_projects/</span>
+                </div>
+                <h2>Featured Projects</h2>
                 
-                <!-- PROYECTO 1: ELEVATOR PIT -->
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <img src="LogoV.PNG" alt="Elevator Pit Logo">
+                <div class="projects-grid">
+                    <!-- PROYECTO 1 -->
+                    <div class="project-card">
+                        <div class="project-image-wrapper">
+                            <img src="LogoV.PNG" alt="Elevator Pit Logo">
+                        </div>
+                        <div class="project-info">
+                            <h3>Elevator Pit</h3>
+                            <p>Elevator Pit is a survival roguelite FPS featuring a "boomer shooter" aesthetic. You control RCG.1, a government robot sent to a deadly underground facility during a global apocalypse. Explore procedurally generated floors, gather essential resources, and hack terminals to unlock the elevator as you seek a global cure.</p>
+                        </div>
                     </div>
-                    <div class="project-info">
-                        <h3>Elevator Pit</h3>
-                        <p>Elevator Pit is a survival roguelite FPS featuring a "boomer shooter" aesthetic. You control RCG.1, a government robot sent to a deadly underground facility during a global apocalypse. Explore procedurally generated floors, gather essential resources, and hack terminals to unlock the elevator as you seek a global cure.</p>
+
+                    <!-- PROYECTO 2 -->
+                    <div class="project-card">
+                        <div class="project-image-wrapper">
+                            <img src="Awakening.jpg" alt="The Dark Awakening">
+                        </div>
+                        <div class="project-info">
+                            <h3>The Dark Awakening</h3>
+                            <p>A Bendy fangame developed by AitorGames! that aims to completely reimagine BATIM; my work focuses on 3D modeling.</p>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- PROYECTO 2: THE DARK AWAKENING (TAMAÑO CORREGIDO) -->
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <img src="Awakening.jpg" alt="The Dark Awakening" style="object-fit: cover;">
+            <!-- EXPERIENCIA -->
+            <section id="experiencia">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">history | grep "experience"</span>
+                </div>
+                <h2>Work Experience</h2>
+                
+                <div class="job-item">
+                    <div class="item-header">
+                        <div class="item-title">CEO — SmileIndie</div>
+                        <div class="date">[Sep 2026 - Active]</div>
                     </div>
-                    <div class="project-info">
-                        <h3>The Dark Awakening</h3>
-                        <p>A Bendy fangame developed by AitorGames! that aims to completely reimagine BATIM; my work focuses on 3D modeling.</p>
+                    <p>Director and indie game developer at the studio, coordinating the 3D visual design workflow and the integration of interactive mechanics.</p>
+                </div>
+            </section>
+
+            <!-- EDUCACIÓN -->
+            <section id="educacion">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">cat /etc/education.log</span>
+                </div>
+                <h2>Education</h2>
+                
+                <div class="edu-item">
+                    <div class="item-header">
+                        <div class="item-title">SMX (Generalist Technician)</div>
+                        <div class="date">[2026]</div>
                     </div>
+                    <p>Graduate of the SMX program as a generalist technician.</p>
                 </div>
+            </section>
 
-            </div>
-        </section>
-
-        <section id="experiencia">
-            <h2>Work experience</h2>
-            <div class="job-item">
-                <div class="item-header">
-                    <div class="item-title">CEO — SmileIndie</div>
-                    <div class="date">September 2026 - Active</div>
+            <!-- HABILIDADES -->
+            <section id="habilidades">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">./get_skills.sh</span>
                 </div>
-                <p>Director and indie game developer at the studio, coordinating the 3D visual design workflow and the integration of interactive mechanics.</p>
-            </div>
-        </section>
-
-        <section id="educacion">
-            <h2>Education</h2>
-            <div class="edu-item">
-                <div class="item-header">
-                    <div class="item-title">SMX</div>
-                    <div class="date">2026</div>
+                <h2>Technical Skills</h2>
+                
+                <div class="skills-list">
+                    <span class="skill-tag">3D-Modeling</span>
+                    <span class="skill-tag">Godot-Engine-(GDScript)</span>
+                    <span class="skill-tag">Asset-Optimization</span>
+                    <span class="skill-tag">Git-&-GitHub</span>
                 </div>
-                <p>Graduate of the SMX program as a generalist technician.</p>
-            </div>
-        </section>
+            </section>
 
-        <section id="habilidades">
-            <h2>Technical Skills</h2>
-            <div class="skills-list">
-                <span class="skill-tag">3D Modeling</span>
-                <span class="skill-tag">Godot Engine (GDScript)</span>
-                <span class="skill-tag">Asset Optimization</span>
-                <span class="skill-tag">Git & GitHub</span>
-            </div>
-        </section>
+            <!-- CONTACTO -->
+            <section id="contacto">
+                <div class="prompt-line">
+                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">ping -c 3 contact_info</span>
+                </div>
+                <h2>Contact</h2>
+                
+                <div class="contact-links">
+                    <a href="mailto:mohamednuevo22@gmail.com">[✉ Email]</a>
+                    <a href="https://github.com" target="_blank">[💻 GitHub]</a>
+                    <a href="https://linkedin.com" target="_blank">[🤝 LinkedIn]</a>
+                </div>
+            </section>
 
-        <section id="contacto">
-            <h2>Contact</h2>
-            <div class="contact-links">
-                <a href="mailto:mohamednuevo22@gmail.com"><span style="margin-right:0.5rem;">✉️</span> Email</a>
-                <a href="https://github.com" target="_blank"><span style="margin-right:0.5rem;">💻</span> GitHub</a>
-                <a href="https://linkedin.com" target="_blank"><span style="margin-right:0.5rem;">🤝</span> LinkedIn</a>
+            <!-- Prompt final parpadeante -->
+            <div class="prompt-line">
+                <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cursor"></span>
             </div>
-        </section>
 
+        </div>
     </div>
 
 </body>
 </html>
-
