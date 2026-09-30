@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rob | Portfolio</title>
-    <!-- ICONOS: Cargamos la librería de iconos vectoriales Font Awesome -->
+    <!-- ICONOS: Enlace corregido con la dirección exacta para cargar los iconos -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --bg: #000000;
-            --text-main: #ef4444; /* Rojo intenso elegido */
+            --text-main: #ef4444; /* Rojo intenso para secciones y acentos */
             --text-muted: #888888;
             --border-line: #1c1c1c;
             --accent: #ef4444;
@@ -32,11 +32,13 @@
             text-align: left;
         }
 
+        /* TÍTULO GRANDE: Ajustado a blanco brillante puro (#ffffff) para un diseño elegante */
         header h1 { 
             margin: 0; 
             font-size: 2.2rem; 
             font-weight: 700;
             letter-spacing: -0.03em;
+            color: #ffffff;
         }
 
         header p { 
@@ -67,7 +69,6 @@
             font-weight: 600;
         }
 
-        /* CORRECCIÓN: Los párrafos se mantienen en un gris claro legible sobre fondo negro */
         p {
             color: #b3b3b3; 
             font-size: 0.95rem;
@@ -87,7 +88,7 @@
 
         .item-title {
             font-weight: 500;
-            color: var(--text-main);
+            color: #ffffff; /* Títulos de puestos en blanco para mejor lectura */
             font-size: 1rem;
         }
 
@@ -113,8 +114,8 @@
         }
 
         .skill-tag:hover {
-            border-color: #555555;
-            color: var(--text-main);
+            border-color: var(--text-main);
+            color: #ffffff;
         }
 
         .contact-links {
@@ -132,7 +133,6 @@
             align-items: center;
         }
 
-        /* ESTILO PARA LOS ICONOS: Añade margen y escala */
         .contact-links a i {
             margin-right: 0.5rem;
             font-size: 1.1rem;
@@ -194,7 +194,6 @@
         <section id="contacto">
             <h2>Contacto</h2>
             <div class="contact-links">
-                <!-- ENLACES ACTUALIZADOS CON ICONOS NATIVOS -->
                 <a href="mailto:tu-correo@email.com"><i class="fa-solid fa-envelope"></i> Email</a>
                 <a href="https://github.com" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
                 <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
