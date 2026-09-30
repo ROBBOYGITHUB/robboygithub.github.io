@@ -3,109 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rob | Currículum Profesional</title>
+    <title>Rob | Portfolio</title>
     <style>
         :root {
             --bg: #000000;
-            --card-bg: #0a0a0a;
-            --border: #262626;
-            --text-primary: #ffffff;
-            --text-muted: #a3a3a3;
-            --accent: #38bdf8; /* Azul eléctrico elegante, puedes cambiarlo */
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --border-line: #1c1c1c;
+            --accent: #ffffff;
         }
+
+        /* FUENTE DE LETRA: Tipografía sans-serif limpia, geométrica y de alta resolución */
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
-            color: var(--text-primary);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
+
         header {
-            text-align: center;
-            padding: 4rem 1rem 2rem;
-            border-bottom: 1px solid var(--border);
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 6rem 1.5rem 3rem;
+            text-align: left; /* Alineado a la izquierda para estilo de estudio de diseño */
         }
+
         header h1 { 
             margin: 0; 
-            font-size: 2.8rem; 
-            font-weight: 800;
-            letter-spacing: -0.05em;
+            font-size: 2.2rem; 
+            font-weight: 700;
+            letter-spacing: -0.03em;
         }
+
         header p { 
-            margin: 0.5rem 0 0; 
+            margin: 0.4rem 0 0; 
             color: var(--text-muted); 
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             font-weight: 400;
         }
+
         .container {
-            max-width: 750px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 0 1.5rem 6rem;
         }
+
+        /* SECCIONES: Sin bloques suaves, separadas por sutiles líneas horizontales */
         section {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-radius: 12px;
+            border-top: 1px solid var(--border-line);
+            padding: 2.5rem 0;
         }
+
         h2 {
-            color: var(--text-primary);
-            font-size: 1.4rem;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            text-transform: uppercase; /* Estilo técnico minimalista */
+            letter-spacing: 0.15em;
             margin-top: 0;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            letter-spacing: -0.02em;
+            font-weight: 600;
         }
+
         p {
             color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .job-item, .edu-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.4rem;
+        }
+
+        .item-title {
+            font-weight: 500;
+            color: var(--text-main);
             font-size: 1rem;
         }
-        .job, .edu {
-            margin-bottom: 1.5rem;
-            border-left: 2px solid var(--border);
-            padding-left: 1rem;
-        }
-        .job-title, .edu-title {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+
         .date {
             color: var(--text-muted);
             font-size: 0.85rem;
-            margin-bottom: 0.5rem;
         }
+
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem;
+            gap: 0.5rem;
         }
+
+        /* ETIQUETAS: Bordes finos y discretos que reaccionan al pasar el cursor */
         .skill-tag {
-            background-color: #171717;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
+            background-color: transparent;
+            color: #dddddd;
+            border: 1px solid var(--border-line);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
             font-size: 0.85rem;
+            transition: all 0.2s ease;
         }
+
+        .skill-tag:hover {
+            border-color: #555555;
+            color: var(--text-main);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
         .contact-links a {
-            color: var(--accent);
+            color: var(--text-muted);
             text-decoration: none;
-            margin-right: 1.5rem;
-            font-weight: 500;
+            font-size: 0.95rem;
             transition: color 0.2s;
         }
+
         .contact-links a:hover { 
-            color: #ffffff;
+            color: var(--text-main);
+            text-decoration: underline;
+            text-underline-offset: 4px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- 👇 CAMBIA TU NOMBRE Y PROFESIÓN AQUÍ -->
         <h1>Rob</h1>
         <p>3D modeler / junior programmer</p>
     </header>
@@ -113,48 +146,48 @@
     <div class="container">
         
         <section id="sobre-mi">
-            <h2>Sobre mí</h2>
-            <!-- 👇 CAMBIA TU DESCRIPCIÓN AQUÍ -->
-            <p>>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
+            <h2>About Me</h2>
+            <p>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
         </section>
 
         <section id="experiencia">
             <h2>Experiencia Laboral</h2>
-            <!-- 👇 REPLICA O MODIFICA ESTOS BLOQUES PARA TUS TRABAJOS -->
-            <div class="job">
-                <div class="job-title">Tu Puesto Actual — Nombre Empresa</div>
-                <div class="date">Enero 2025 - Presente</div>
-                <p>Descripción de tus tareas clave, logros o tecnologías utilizadas en este puesto.</p>
+            <div class="job-item">
+                <div class="item-header">
+                    <div class="item-title">CEO — SmileIndie</div>
+                    <div class="date">September 2026 - Active</div>
+                </div>
+                <p>Dirección y desarrollo de videojuegos independientes, coordinando el flujo de diseño visual en 3D e integración de mecánicas interactivas.</p>
             </div>
         </section>
 
         <section id="educacion">
             <h2>Educación</h2>
-            <div class="edu">
-                <div class="edu-title">Tu Carrera, Curso o Certificación</div>
-                <div class="date">Institución Educativa | 2024</div>
+            <div class="edu-item">
+                <div class="item-header">
+                    <div class="item-title">Autodidacta & Formación Especializada</div>
+                    <div class="date">2024</div>
+                </div>
+                <p>Desarrollo continuo de flujos artísticos 3D y bases de programación para entornos interactivos.</p>
             </div>
         </section>
 
         <section id="habilidades">
             <h2>Habilidades Técnicas</h2>
             <div class="skills-list">
-                <!-- 👇 AÑADE O QUITA LAS ETIQUETAS QUE QUIERAS -->
-                <span class="skill-tag">HTML5 & CSS3</span>
+                <span class="skill-tag">3D Modeling</span>
+                <span class="skill-tag">Godot Engine (GDScript)</span>
+                <span class="skill-tag">Asset Optimization</span>
                 <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">Resolución de problemas</span>
-                <span class="skill-tag">Diseño UI</span>
             </div>
         </section>
 
         <section id="contacto">
             <h2>Contacto</h2>
-            <p>¿Tienes un proyecto en mente? Hablemos.</p>
             <div class="contact-links">
-                <!-- 👇 PON TUS LINKS REALES AQUÍ -->
                 <a href="mailto:tu-correo@email.com">Email</a>
-                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
                 <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
             </div>
         </section>
 
