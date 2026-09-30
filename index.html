@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rob@dev:~# portfolio</title>
+    <title>Rob | Terminal Portfolio</title>
     <style>
         :root {
-            --bg: #0d1117;
-            --term-bg: #161b22;
-            --term-header: #21262d;
-            --text-main: #00ff66; /* Verde Terminal Clásico */
-            --text-accent: #ff79c6; /* Rosa / Neón */
-            --text-dim: #8b949e;
-            --text-white: #f0f6fc;
-            --border: #30363d;
-            --prompt-user: #50fa7b;
-            --prompt-path: #8be9fd;
-            --font-mono: "Fira Code", "JetBrains Mono", "Courier New", Courier, monospace;
+            --bg-term: #0d0e11;
+            --header-term: #1a1b26;
+            --text-main: #00ff66; /* Verde terminal hacker/retro */
+            --text-bright: #ffffff;
+            --text-muted: #565f89;
+            --border-line: #24283b;
+            --accent-red: #f7768e;
+            --accent-blue: #7aa2f7;
+            --accent-yellow: #e0af68;
+            --font-mono: 'Fira Code', 'Cascadia Code', 'Courier New', Courier, monospace;
         }
 
         * {
@@ -25,7 +24,7 @@
 
         body {
             font-family: var(--font-mono);
-            background-color: var(--bg);
+            background-color: #050505;
             color: var(--text-main);
             margin: 0;
             padding: 2rem 1rem;
@@ -33,24 +32,24 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Contenedor Principal estilo Ventana de Terminal */
+        /* Contenedor tipo Ventana de Terminal */
         .terminal-window {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
-            background-color: var(--term-bg);
-            border: 1px solid var(--border);
+            background-color: var(--bg-term);
+            border: 1px solid var(--border-line);
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 102, 0.05), 0 0 20px rgba(0, 0, 0, 0.8);
             overflow: hidden;
         }
 
-        /* Barra superior de la Terminal */
+        /* Barra superior de la ventana */
         .terminal-header {
-            background-color: var(--term-header);
+            background-color: var(--header-term);
             padding: 0.6rem 1rem;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border-line);
         }
 
         .buttons {
@@ -62,104 +61,76 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            display: inline-block;
         }
 
-        .btn-close { background-color: #ff5f56; }
-        .btn-minimize { background-color: #ffbd2e; }
-        .btn-maximize { background-color: #27c93f; }
+        .btn-close { background-color: var(--accent-red); }
+        .btn-min { background-color: var(--accent-yellow); }
+        .btn-max { background-color: var(--text-main); }
 
-        .title {
+        .terminal-title {
             margin-left: auto;
             margin-right: auto;
-            color: var(--text-dim);
+            color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        .container {
+            padding: 2rem 1.5rem;
+        }
+
+        /* Prompt de Linux */
+        .prompt {
+            color: var(--accent-blue);
             font-weight: bold;
         }
 
-        .terminal-body {
-            padding: 2rem;
-        }
-
-        /* Prompts y Comando */
-        .prompt-line {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            flex-wrap: wrap;
-        }
-
-        .user { color: var(--prompt-user); }
-        .path { color: var(--prompt-path); }
-        .command { color: var(--text-white); }
-
-        /* Cursor parpadeante */
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 1.2em;
-            background-color: var(--text-main);
-            vertical-align: middle;
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 49% { opacity: 1; }
-            50%, 100% { opacity: 0; }
-        }
+        .prompt .user { color: var(--text-main); }
+        .prompt .path { color: var(--accent-yellow); }
+        .prompt .cmd { color: var(--text-bright); font-weight: normal; }
 
         header {
             margin-bottom: 2rem;
-            border-bottom: 1px dashed var(--border);
-            padding-bottom: 1.5rem;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            color: var(--text-white);
-            letter-spacing: -1px;
+        header h1 { 
+            margin: 0.5rem 0 0.2rem; 
+            font-size: 2rem; 
+            font-weight: 700;
+            color: var(--text-bright);
+            letter-spacing: -0.03em;
         }
 
-        header p {
-            margin: 0.2rem 0 0;
-            color: var(--text-accent);
-            font-size: 1rem;
+        header p { 
+            margin: 0; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
         }
 
         section {
-            margin-bottom: 2.5rem;
+            border-top: 1px dashed var(--border-line);
+            padding: 1.8rem 0;
         }
 
         h2 {
-            color: var(--text-accent);
-            font-size: 1rem;
+            color: var(--accent-red);
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-top: 0;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        h2::before {
-            content: ">";
-            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            font-weight: 600;
         }
 
         p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
+            color: #a9b1d6; 
+            font-size: 0.9rem;
             margin: 0;
         }
 
         .job-item, .edu-item {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
             background: rgba(255, 255, 255, 0.02);
-            padding: 1rem;
+            padding: 0.8rem;
             border-left: 2px solid var(--text-main);
         }
 
@@ -167,32 +138,32 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.3rem;
             flex-wrap: wrap;
         }
 
         .item-title {
-            font-weight: bold;
-            color: var(--text-white);
+            font-weight: 600;
+            color: var(--text-bright); 
             font-size: 0.95rem;
         }
 
         .date {
-            color: var(--text-accent);
+            color: var(--text-muted);
             font-size: 0.8rem;
         }
 
-        /* Grid de Proyectos */
+        /* 🖼️ GALERÍA ESTILO LINUX / RETRO */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
             margin-top: 1rem;
         }
 
         .project-card {
-            background-color: #0d1117;
-            border: 1px solid var(--border);
+            background-color: #16161e;
+            border: 1px solid var(--border-line);
             border-radius: 4px;
             overflow: hidden;
             display: flex;
@@ -204,46 +175,37 @@
             border-color: var(--text-main);
         }
 
-        /* Estilo Hacker / Matrix / CRT para las imágenes */
         .project-image-wrapper {
             width: 100%;
             height: 180px;
             overflow: hidden;
             position: relative;
-            background-color: #000;
+            background: #000;
+        }
+
+        /* Scanlines CRT para imágenes */
+        .project-image-wrapper::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 2;
+            pointer-events: none;
         }
 
         .project-image-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(120%) brightness(90%);
-            mix-blend-mode: luminosity;
-            transition: all 0.3s ease;
+            filter: grayscale(80%) contrast(120%);
+            transition: transform 0.4s ease, filter 0.4s ease;
         }
 
-        /* Overlay tipo pantalla CRT/Scanlines sobre la imagen */
-        .project-image-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.25) 50%
-            ), linear-gradient(
-                90deg,
-                rgba(255, 0, 0, 0.06),
-                rgba(0, 255, 0, 0.02),
-                rgba(0, 0, 255, 0.06)
-            );
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
-
-        /* Al pasar el cursor, la imagen cobra color y se escala ligeramente */
         .project-card:hover .project-image-wrapper img {
-            filter: grayscale(0%) contrast(100%) brightness(100%);
             transform: scale(1.05);
+            filter: grayscale(0%) contrast(100%);
         }
 
         .project-info {
@@ -251,18 +213,17 @@
         }
 
         .project-info h3 {
-            margin: 0 0 0.5rem;
+            margin: 0 0 0.4rem;
             font-size: 1rem;
-            color: var(--text-white);
-            font-weight: bold;
+            color: var(--text-bright);
+            font-weight: 600;
         }
 
         .project-info p {
-            font-size: 0.85rem;
-            color: var(--text-dim);
+            font-size: 0.82rem;
+            color: var(--text-muted);
         }
 
-        /* Tags de habilidades como flags de comando Linux */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
@@ -270,87 +231,132 @@
         }
 
         .skill-tag {
-            background-color: #21262d;
-            color: var(--prompt-path);
-            border: 1px solid var(--border);
+            background-color: #1a1b26;
+            color: var(--text-main);
+            border: 1px solid var(--border-line);
             padding: 0.25rem 0.6rem;
             border-radius: 3px;
             font-size: 0.8rem;
-        }
-
-        .skill-tag::before {
-            content: "--";
-            color: var(--text-accent);
+            transition: all 0.2s ease;
         }
 
         .skill-tag:hover {
             border-color: var(--text-main);
-            color: var(--text-main);
+            background-color: var(--text-main);
+            color: #000;
         }
 
-        /* Enlaces de contacto estilo Shell */
         .contact-links {
             display: flex;
             gap: 1.2rem;
             flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
 
         .contact-links a {
-            color: var(--text-white);
+            color: var(--text-bright);
             text-decoration: none;
             font-size: 0.9rem;
             transition: color 0.2s;
             display: inline-flex;
             align-items: center;
+            background: #1a1b26;
+            padding: 0.4rem 0.8rem;
+            border-radius: 3px;
+            border: 1px solid var(--border-line);
         }
 
-        .contact-links a:hover {
+        .contact-links a:hover { 
             color: var(--text-main);
-            text-decoration: underline;
+            border-color: var(--text-main);
+        }
+
+        /* Cursor parpadeante */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 15px;
+            background-color: var(--text-main);
+            vertical-align: middle;
+            animation: blink 1s infinite;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="terminal-window">
-        <!-- Barra superior de la ventana -->
+        <!-- Barra superior del Terminal -->
         <div class="terminal-header">
             <div class="buttons">
                 <span class="btn btn-close"></span>
-                <span class="btn btn-minimize"></span>
-                <span class="btn btn-maximize"></span>
+                <span class="btn btn-min"></span>
+                <span class="btn btn-max"></span>
             </div>
-            <div class="title">bash - rob@developer-machine:~</div>
+            <div class="terminal-title">bash - rob@dev:~</div>
         </div>
 
-        <div class="terminal-body">
+        <div class="container">
             
             <header>
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">whoami</span>
-                </div>
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">whoami</span></div>
                 <h1>Rob</h1>
                 <p>> 3D modeler / junior programmer</p>
             </header>
 
-            <!-- SOBRE MÍ -->
             <section id="sobre-mi">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">cat about_me.txt</span>
-                </div>
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">cat about_me.txt</span></div>
                 <h2>About Me</h2>
                 <p>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
             </section>
 
-            <!-- PROYECTOS -->
-            <section id="proyectos">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">ls -la ./featured_projects/</span>
+            <section id="experiencia">
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">history | grep experience</span></div>
+                <h2>Work experience</h2>
+                <div class="job-item">
+                    <div class="item-header">
+                        <div class="item-title">CEO — SmileIndie</div>
+                        <div class="date">[September 2026 - Active]</div>
+                    </div>
+                    <p>Director and indie game developer at the studio, coordinating the 3D visual design workflow and the integration of interactive mechanics.</p>
                 </div>
+            </section>
+
+            <section id="educacion">
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">cat /etc/education</span></div>
+                <h2>Education</h2>
+                <div class="edu-item">
+                    <div class="item-header">
+                        <div class="item-title">SMX</div>
+                        <div class="date">[2026]</div>
+                    </div>
+                    <p>Graduate of the SMX program as a generalist technician.</p>
+                </div>
+            </section>
+
+            <section id="habilidades">
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">./list_skills.sh</span></div>
+                <h2>Technical Skills</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">--3D-Modeling</span>
+                    <span class="skill-tag">--Godot-Engine (GDScript)</span>
+                    <span class="skill-tag">--Asset-Optimization</span>
+                    <span class="skill-tag">--Git-&-GitHub</span>
+                </div>
+            </section>
+
+            <!-- 🖼️ SECCIÓN DE PROYECTOS (UBICADA AQUÍ EN EL ORDEN PEDIDO) -->
+            <section id="proyectos">
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">ls -la ./featured_projects/</span></div>
                 <h2>Featured Projects</h2>
-                
                 <div class="projects-grid">
-                    <!-- PROYECTO 1 -->
+                    
+                    <!-- PROYECTO 1: ELEVATOR PIT -->
                     <div class="project-card">
                         <div class="project-image-wrapper">
                             <img src="LogoV.PNG" alt="Elevator Pit Logo">
@@ -361,7 +367,7 @@
                         </div>
                     </div>
 
-                    <!-- PROYECTO 2 -->
+                    <!-- PROYECTO 2: THE DARK AWAKENING -->
                     <div class="project-card">
                         <div class="project-image-wrapper">
                             <img src="Awakening.jpg" alt="The Dark Awakening">
@@ -371,72 +377,22 @@
                             <p>A Bendy fangame developed by AitorGames! that aims to completely reimagine BATIM; my work focuses on 3D modeling.</p>
                         </div>
                     </div>
+
                 </div>
             </section>
 
-            <!-- EXPERIENCIA -->
-            <section id="experiencia">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">history | grep "experience"</span>
-                </div>
-                <h2>Work Experience</h2>
-                
-                <div class="job-item">
-                    <div class="item-header">
-                        <div class="item-title">CEO — SmileIndie</div>
-                        <div class="date">[Sep 2026 - Active]</div>
-                    </div>
-                    <p>Director and indie game developer at the studio, coordinating the 3D visual design workflow and the integration of interactive mechanics.</p>
-                </div>
-            </section>
-
-            <!-- EDUCACIÓN -->
-            <section id="educacion">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">cat /etc/education.log</span>
-                </div>
-                <h2>Education</h2>
-                
-                <div class="edu-item">
-                    <div class="item-header">
-                        <div class="item-title">SMX (Generalist Technician)</div>
-                        <div class="date">[2026]</div>
-                    </div>
-                    <p>Graduate of the SMX program as a generalist technician.</p>
-                </div>
-            </section>
-
-            <!-- HABILIDADES -->
-            <section id="habilidades">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">./get_skills.sh</span>
-                </div>
-                <h2>Technical Skills</h2>
-                
-                <div class="skills-list">
-                    <span class="skill-tag">3D-Modeling</span>
-                    <span class="skill-tag">Godot-Engine-(GDScript)</span>
-                    <span class="skill-tag">Asset-Optimization</span>
-                    <span class="skill-tag">Git-&-GitHub</span>
-                </div>
-            </section>
-
-            <!-- CONTACTO -->
+            <!-- SECCIÓN DE CONTACTO Y REDES (AL FINAL) -->
             <section id="contacto">
-                <div class="prompt-line">
-                    <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="command">ping -c 3 contact_info</span>
-                </div>
+                <div class="prompt"><span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cmd">ping -c 1 contact_me</span></div>
                 <h2>Contact</h2>
-                
                 <div class="contact-links">
-                    <a href="mailto:mohamednuevo22@gmail.com">[✉ Email]</a>
-                    <a href="https://github.com" target="_blank">[💻 GitHub]</a>
-                    <a href="https://linkedin.com" target="_blank">[🤝 LinkedIn]</a>
+                    <a href="mailto:mohamednuevo22@gmail.com">✉️ email</a>
+                    <a href="https://github.com" target="_blank">💻 github</a>
+                    <a href="https://linkedin.com" target="_blank">🤝 linkedin</a>
                 </div>
             </section>
 
-            <!-- Prompt final parpadeante -->
-            <div class="prompt-line">
+            <div class="prompt" style="margin-top: 1.5rem;">
                 <span class="user">rob@dev</span>:<span class="path">~</span>$ <span class="cursor"></span>
             </div>
 
