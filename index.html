@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Currículum Profesional</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --text: #334155;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        header h1 { margin: 0; font-size: 2.5rem; }
+        header p { margin: 0.5rem 0 0; color: #94a3b8; font-size: 1.2rem; }
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--light);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        .job, .edu {
+            margin-bottom: 1.5rem;
+        }
+        .job-title, .edu-title {
+            font-weight: bold;
+            color: var(--dark);
+        }
+        .date {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-tag {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .contact-links a {
+            color: var(--primary);
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .contact-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Rob (Nombre Completo)</h1>
+        <p>Tu Profesión / Especialidad</p>
+    </header>
+
+    <div class="container">
+        
+        <section id="sobre-mi">
+            <h2>Sobre mí</h2>
+            <p>Escribe aquí una breve presentación sobre ti, tus metas y lo que sabes hacer.</p>
+        </section>
+
+        <section id="experiencia">
+            <h2>Experiencia Laboral</h2>
+            <div class="job">
+                <div class="job-title">Tu Puesto — Nombre de la Empresa</div>
+                <div class="date">Mes AAAA - Presente</div>
+                <p>Describe brevemente tus tareas principales o logros.</p>
+            </div>
+        </section>
+
+        <section id="educacion">
+            <h2>Educación y Formación</h2>
+            <div class="edu">
+                <div class="edu-title">Tu Título o Curso</div>
+                <div class="date">Centro de Estudios | Año</div>
+            </div>
+        </section>
+
+        <section id="habilidades">
+            <h2>Habilidades</h2>
+            <div class="skills-list">
+                <span class="skill-tag">Habilidad 1</span>
+                <span class="skill-tag">Habilidad 2</span>
+                <span class="skill-tag">Trabajo en equipo</span>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Puedes contactarme en:</p>
+            <div class="contact-links">
+                <a href="mailto:tu-correo@email.com">tu-correo@email.com</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>
