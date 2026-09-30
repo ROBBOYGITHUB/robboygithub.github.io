@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rob | Portfolio</title>
-    <!-- ICONOS: Enlace corregido con la dirección exacta para cargar los iconos -->
-    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         :root {
             --bg: #000000;
-            --text-main: #ef4444; /* Rojo intenso para secciones y acentos */
+            --text-main: #ef4444; /* Rojo intenso elegante */
             --text-muted: #888888;
             --border-line: #1c1c1c;
             --accent: #ef4444;
@@ -32,13 +30,12 @@
             text-align: left;
         }
 
-        /* TÍTULO GRANDE: Ajustado a blanco brillante puro (#ffffff) para un diseño elegante */
         header h1 { 
             margin: 0; 
             font-size: 2.2rem; 
             font-weight: 700;
             letter-spacing: -0.03em;
-            color: #ffffff;
+            color: #ffffff; /* Nombre grande en blanco puro */
         }
 
         header p { 
@@ -88,13 +85,67 @@
 
         .item-title {
             font-weight: 500;
-            color: #ffffff; /* Títulos de puestos en blanco para mejor lectura */
+            color: #ffffff; 
             font-size: 1rem;
         }
 
         .date {
             color: var(--text-muted);
             font-size: 0.85rem;
+        }
+
+        /* 🖼️ ESTILOS DE LA GALERÍA DE IMÁGENES */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background-color: #0a0a0a;
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor de la imagen que oculta el desborde al agrandarse */
+        .project-image-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Propiedades de la imagen con la transición de agrandamiento suave */
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* 🚀 EFECTO HOVER: Agranda la imagen un 8% cuando el cursor pasa por encima de la tarjeta */
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.08);
+        }
+
+        .project-info {
+            padding: 1.2rem;
+        }
+
+        .project-info h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .project-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
         }
 
         .skills-list {
@@ -133,11 +184,6 @@
             align-items: center;
         }
 
-        .contact-links a i {
-            margin-right: 0.5rem;
-            font-size: 1.1rem;
-        }
-
         .contact-links a:hover { 
             color: var(--text-main);
             text-decoration: underline;
@@ -157,6 +203,38 @@
         <section id="sobre-mi">
             <h2>About Me</h2>
             <p>I am a 3D modeler with over two years of experience creating digital assets, environments, and characters. I have recently expanded my skill set into technical development, diving into game programming using the Godot engine. My approach combines the visual creativity of 3D art with the logic of software development to create unique interactive experiences.</p>
+        </section>
+
+        <!-- 🖼️ NUEVA SECCIÓN DE PROYECTOS VISUALES -->
+        <section id="proyectos">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                
+                <!-- PROYECTO 1 -->
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <!-- Reemplaza "proyecto1.jpg" por el nombre de tu archivo subido -->
+                        <img src="proyecto1.jpg" alt="3D Environment Asset">
+                    </div>
+                    <div class="project-info">
+                        <h3>3D Game Environment</h3>
+                        <p>Optimized 3D asset pack designed for modern indie games. High-poly detailing baked into low-poly meshes.</p>
+                    </div>
+                </div>
+
+                <!-- PROYECTO 2 -->
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <!-- Reemplaza "proyecto2.jpg" por el nombre de tu archivo subido -->
+                        <img src="proyecto2.jpg" alt="Godot Game Prototype">
+                    </div>
+                    <div class="project-info">
+                        <h3>Godot Mechanics Prototype</h3>
+                        <p>An interactive system featuring character movement, physics-based interactions, and custom UI elements implemented in GDScript.</p>
+                    </div>
+                </div>
+
+            </div>
         </section>
 
         <section id="experiencia">
@@ -191,13 +269,12 @@
             </div>
         </section>
 
-               <section id="contacto">
+        <section id="contacto">
             <h2>Contacto</h2>
             <div class="contact-links">
-                <!-- Emojis nativos: se verán en cualquier dispositivo sin cargar librerías -->
                 <a href="mailto:mohamednuevo22@gmail.com"><span style="margin-right:0.5rem;">✉️</span> Email</a>
-                <a href="https://github.com/ROBBOYGITHUB" target="_blank"><span style="margin-right:0.5rem;">💻</span> GitHub</a>
-                <a href="https://www.linkedin.com/in/rob-rob-085bb243b/" target="_blank"><span style="margin-right:0.5rem;">🤝</span> LinkedIn</a>
+                <a href="https://github.com" target="_blank"><span style="margin-right:0.5rem;">💻</span> GitHub</a>
+                <a href="https://linkedin.com" target="_blank"><span style="margin-right:0.5rem;">🤝</span> LinkedIn</a>
             </div>
         </section>
 
@@ -205,3 +282,4 @@
 
 </body>
 </html>
+
